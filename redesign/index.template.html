@@ -1,0 +1,396 @@
+<title>AC & Refrigeration Repairs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600&display=swap">
+<style>
+/* Layout: one strong left-aligned column system, 1180px max; the phone number is the hero. Heat (orange) is the only accent, cold (blue) is the structural color. */
+:root{
+  --paper:#F5F7FA;
+  --card:#FFFFFF;
+  --ink:#0F1B2D;
+  --body:#2E3A4C;
+  --muted:#5F6E84;
+  --line:#D9E0EA;
+  --cold:#1256A6;
+  --cold-soft:#E3EDF9;
+  --heat:#F0541E;
+  --heat-deep:#C83E0E;
+  --heat-soft:#FDE9E0;
+  --display:"Barlow Condensed","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  --text:"Barlow","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0C1526; --card:#142037; --ink:#F3F6FA; --body:#D3DBE6; --muted:#9AA8BC; --line:#263450;
+    --cold:#5B9BE8; --cold-soft:#17294A; --heat:#FF6A33; --heat-deep:#FF8557; --heat-soft:#3A1E12; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0C1526; --card:#142037; --ink:#F3F6FA; --body:#D3DBE6; --muted:#9AA8BC; --line:#263450;
+  --cold:#5B9BE8; --cold-soft:#17294A; --heat:#FF6A33; --heat-deep:#FF8557; --heat-soft:#3A1E12; color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--body);font-family:var(--text);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:var(--cold)}
+h1,h2,h3{font-family:var(--display);color:var(--ink);line-height:1.02;margin:0;text-wrap:balance;letter-spacing:-.005em}
+h1{font-size:clamp(44px,7vw,84px);font-weight:800}
+h2{font-size:clamp(34px,4.6vw,56px);font-weight:800}
+h3{font-size:clamp(24px,2.6vw,30px);font-weight:700}
+p{margin:0}
+.wrap{max-width:1180px;margin-inline:auto;padding-inline:20px}
+section{padding-block:clamp(56px,8vw,104px)}
+.lede{font-size:clamp(18px,1.6vw,21px);max-width:58ch}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:.01em;text-decoration:none;padding:14px 22px;border-radius:6px;border:2px solid transparent;cursor:pointer;line-height:1;transition:transform .12s ease,background .15s ease}
+.btn:active{transform:translateY(1px)}
+.btn-heat{background:var(--heat);color:#fff}
+.btn-heat:hover{background:var(--heat-deep)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn svg{width:20px;height:20px;flex:none}
+:focus-visible{outline:3px solid var(--heat);outline-offset:3px}
+
+/* Top bar */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--card);border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;align-items:center;gap:24px;min-height:76px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:52px;width:auto;border-radius:4px}
+.nav{display:flex;gap:28px;margin-left:auto;font-weight:500}
+.nav a{color:var(--body);text-decoration:none;font-size:16px}
+.nav a:hover{color:var(--heat)}
+.topbar .btn{padding:11px 16px;font-size:18px}
+@media (max-width:900px){.nav{display:none}}
+@media (max-width:520px){.topbar .btn span{display:none}.topbar .btn{padding:11px 12px}}
+
+/* Hero */
+.hero{padding-block:clamp(40px,7vw,88px);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero-kicker{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:700;font-size:18px;color:var(--heat-deep);background:var(--heat-soft);padding:6px 12px 6px 8px;border-radius:999px;margin-bottom:22px}
+.hero-kicker i{width:10px;height:10px;border-radius:50%;background:var(--heat);display:inline-block;animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(240,84,30,.55)}60%{box-shadow:0 0 0 9px rgba(240,84,30,0)}}
+.hero h1{margin-bottom:18px}
+.hero .lede{margin-bottom:30px}
+.phone-big{display:block;font-family:var(--display);font-weight:800;font-size:clamp(40px,6.4vw,72px);color:var(--ink);text-decoration:none;line-height:1;letter-spacing:.01em;margin:4px 0 6px;font-variant-numeric:tabular-nums}
+.phone-big:hover{color:var(--heat)}
+.phone-note{color:var(--muted);font-size:15px;margin-bottom:26px}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px}
+.hero-media{position:relative}
+.hero-media img{border-radius:12px;aspect-ratio:3/2;object-fit:cover;width:100%}
+.hero-card{position:absolute;left:-24px;bottom:-26px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--heat);border-radius:8px;padding:16px 20px;box-shadow:0 18px 40px -22px rgba(15,27,45,.45);max-width:300px}
+.hero-card strong{display:block;font-family:var(--display);font-size:26px;color:var(--ink);line-height:1.05}
+.hero-card span{color:var(--muted);font-size:15px}
+@media (max-width:900px){
+  .hero .wrap{grid-template-columns:1fr;gap:34px}
+  .hero-media{margin-top:4px}
+  .hero-card{left:12px;bottom:-18px;max-width:none;right:12px}
+  .hero-media{margin-bottom:24px}
+}
+
+/* Trust strip */
+.strip{background:var(--cold);color:#fff;padding-block:0}
+.strip .wrap{display:grid;grid-template-columns:repeat(3,1fr)}
+.strip-item{display:flex;align-items:center;gap:14px;padding:22px 20px;border-right:1px solid rgba(255,255,255,.18)}
+.strip-item:first-child{padding-left:0}
+.strip-item:last-child{border-right:0}
+.strip-item svg{width:30px;height:30px;flex:none}
+.strip-item b{display:block;font-family:var(--display);font-size:21px;font-weight:700;line-height:1.1}
+.strip-item small{opacity:.85;font-size:14px}
+@media (max-width:760px){.strip .wrap{grid-template-columns:1fr}.strip-item{border-right:0;border-bottom:1px solid rgba(255,255,255,.18);padding:16px 0}.strip-item:last-child{border-bottom:0}}
+
+/* Section headers */
+.sec-head{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:end;margin-bottom:clamp(30px,4vw,48px)}
+.sec-head p{max-width:52ch}
+@media (max-width:760px){.sec-head{grid-template-columns:1fr;gap:14px}}
+
+/* Services */
+.services{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.svc img{aspect-ratio:16/9;object-fit:cover;width:100%}
+.svc-body{padding:26px 28px 30px;display:flex;flex-direction:column;gap:14px;flex:1}
+.svc-body h3{font-size:clamp(28px,2.6vw,34px)}
+.svc ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.svc li{display:flex;gap:10px;align-items:flex-start}
+.svc li::before{content:"";flex:none;width:8px;height:8px;border-radius:2px;background:var(--heat);margin-top:10px}
+.svc .btn{align-self:flex-start;margin-top:auto}
+@media (max-width:820px){.services{grid-template-columns:1fr}}
+
+/* Why us */
+.why{background:var(--card);border-block:1px solid var(--line)}
+.why .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.why-img img{border-radius:12px;aspect-ratio:4/3;object-fit:cover;width:100%}
+.why-list{display:grid;gap:26px;margin-top:28px}
+.why-item{display:grid;grid-template-columns:48px 1fr;gap:16px}
+.why-item .ic{width:48px;height:48px;border-radius:10px;background:var(--cold-soft);display:grid;place-items:center}
+.why-item .ic svg{width:24px;height:24px}
+.why-item b{display:block;font-family:var(--display);font-size:23px;color:var(--ink);line-height:1.1;margin-bottom:4px}
+@media (max-width:860px){.why .wrap{grid-template-columns:1fr;gap:32px}}
+
+/* Steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{position:relative;padding:26px 24px 28px;border-top:3px solid var(--heat);background:var(--card);border-radius:0 0 10px 10px;border-inline:1px solid var(--line);border-bottom:1px solid var(--line)}
+.step .n{font-family:var(--display);font-weight:800;font-size:48px;line-height:1;color:var(--heat);margin-bottom:10px}
+.step b{display:block;font-family:var(--display);font-size:25px;color:var(--ink);line-height:1.1;margin-bottom:8px}
+@media (max-width:760px){.steps{grid-template-columns:1fr}}
+
+/* Testimonials */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:28px 26px;display:flex;flex-direction:column;gap:18px}
+.quote .stars{display:flex;gap:3px}
+.quote .stars svg{width:18px;height:18px;fill:var(--heat)}
+.quote p{font-size:19px;color:var(--ink);line-height:1.45;font-weight:500}
+.quote small{color:var(--muted);font-size:15px;margin-top:auto}
+@media (max-width:820px){.quotes{grid-template-columns:1fr}}
+
+/* Locations + form */
+.contact{background:var(--ink);color:#DCE4F0}
+:root[data-theme="dark"] .contact{background:#060D1A}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .contact{background:#060D1A}}
+.contact h2,.contact h3{color:#fff}
+.contact .wrap{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.loc-list{display:grid;gap:18px;margin-top:28px}
+.loc{border:1px solid rgba(255,255,255,.14);border-radius:10px;padding:20px 22px;display:grid;gap:6px}
+.loc b{font-family:var(--display);font-size:24px;color:#fff;line-height:1.1}
+.loc a{color:#fff}
+.loc .hours{color:#FFB18F;font-weight:500}
+.contact-lines{display:grid;gap:8px;margin-top:22px;font-size:17px}
+.contact-lines a{color:#fff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3)}
+.form{background:var(--card);color:var(--body);border-radius:12px;padding:30px 30px 32px;display:grid;gap:16px}
+.form h3{color:var(--ink)}
+.form label{display:grid;gap:6px;font-weight:500;font-size:15px;color:var(--ink)}
+.form input,.form select,.form textarea{font:inherit;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:6px;background:var(--paper);color:var(--ink);width:100%}
+.form textarea{min-height:110px;resize:vertical}
+.form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form .btn{width:100%;justify-content:center}
+.form .fine{font-size:14px;color:var(--muted)}
+.form .done{display:none;background:var(--cold-soft);border-left:4px solid var(--cold);padding:14px 16px;border-radius:6px;color:var(--ink)}
+.form.sent .done{display:block}
+@media (max-width:900px){.contact .wrap{grid-template-columns:1fr;gap:36px}}
+@media (max-width:520px){.form .row{grid-template-columns:1fr}.form{padding:22px 20px}}
+
+/* Footer */
+footer{padding-block:34px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between}
+footer nav{display:flex;flex-wrap:wrap;gap:20px}
+footer a{color:var(--body);text-decoration:none}
+footer a:hover{color:var(--heat)}
+
+/* Mobile call bar */
+.callbar{display:none}
+@media (max-width:900px){
+  .callbar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--heat);color:#fff;padding:12px 20px;padding-bottom:calc(12px + env(safe-area-inset-bottom,0px));align-items:center;justify-content:space-between;gap:12px;text-decoration:none;font-family:var(--display);font-weight:700;font-size:21px;box-shadow:0 -8px 24px rgba(0,0,0,.18)}
+  .callbar small{font-family:var(--text);font-weight:500;font-size:13px;opacity:.9;display:block}
+  body{padding-bottom:72px}
+}
+@media (prefers-reduced-motion:reduce){.hero-kicker i{animation:none}html{scroll-behavior:auto}.btn{transition:none}}
+</style>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="AC and Refrigeration Repairs LLC home"><img src="{{LOGO}}" alt="AC and Refrigeration Repairs LLC"></a>
+    <nav class="nav" aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#how">How it works</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Locations</a>
+    </nav>
+    <a class="btn btn-heat" href="tel:8779155222"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.7a2 2 0 0 1 1.7 2z"/></svg><span>877-915-5222</span></a>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="hero-kicker"><i></i>Open now. 24 hours, every day.</div>
+      <h1>AC down? Walk-in cooler warming up? We're on our way.</h1>
+      <p class="lede">Licensed air conditioning and commercial refrigeration repair for homes and businesses across South Florida and Orlando. One call, a real technician, same-day service.</p>
+      <a class="phone-big" href="tel:8779155222">877-915-5222</a>
+      <p class="phone-note">Toll free. A person answers, day or night.</p>
+      <div class="cta-row">
+        <a class="btn btn-heat" href="#contact">Request service online</a>
+        <a class="btn btn-ghost" href="#services">See what we repair</a>
+      </div>
+    </div>
+    <div class="hero-media">
+      <img src="{{TECHS}}" alt="Two technicians servicing an outdoor condenser unit">
+      <div class="hero-card"><strong>Miramar and Orlando</strong><span>Residential and commercial, Monday through Sunday</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>24/7 emergency response</b><small>Nights, weekends and holidays, no surcharge surprise</small></div></div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg><div><b>Certified technicians</b><small>Trained on the latest diagnostic tools and systems</small></div></div>
+    <div class="strip-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 4-14 16-16-1 10-6 15-14 16"/><path d="M4 20c3-5 7-8 11-10"/></svg><div><b>Energy-efficient repairs</b><small>Fixes that lower your bill and your footprint</small></div></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Two things we do, and we do them around the clock</h2>
+      <p class="lede">Whether it's the central air in a Miramar home or the reach-in coolers in an Orlando restaurant, our team inspects, diagnoses and repairs with as little downtime as possible.</p>
+    </div>
+    <div class="services">
+      <article class="svc">
+        <img src="{{UNITS}}" alt="Residential air conditioning condenser units outside a home">
+        <div class="svc-body">
+          <h3>Air conditioning repair</h3>
+          <p>Not cooling, short cycling, leaking, or dead altogether. We service all major brands of residential and commercial AC systems and restore them to peak performance.</p>
+          <ul>
+            <li>Same-day diagnosis and repair</li>
+            <li>Central air, split systems and rooftop units</li>
+            <li>Maintenance plans that prevent the next breakdown</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Book an AC repair</a>
+        </div>
+      </article>
+      <article class="svc">
+        <img src="{{BLUE}}" alt="Technician testing a commercial refrigeration compressor with a multimeter">
+        <div class="svc-body">
+          <h3>Commercial refrigeration</h3>
+          <p>Sales, service and installation for every kind of commercial refrigeration equipment. When product is at risk, we get there fast and keep it cold.</p>
+          <ul>
+            <li>Walk-in coolers and freezers</li>
+            <li>Reach-ins, display cases and ice machines</li>
+            <li>New equipment sales and installation</li>
+          </ul>
+          <a class="btn btn-ghost" href="#contact">Book a refrigeration call</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="why">
+  <div class="wrap">
+    <div class="why-img"><img src="{{WORK}}" alt="Technician repairing control wiring at a workbench"></div>
+    <div>
+      <h2>Fast, reliable, and honest about what it costs</h2>
+      <p class="lede" style="margin-top:16px">We prioritize customer satisfaction and environmental sustainability. Every repair is designed to keep your system running efficiently, saving you money and reducing your carbon footprint.</p>
+      <div class="why-list">
+        <div class="why-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0 5 5l-9.4 9.4a2.1 2.1 0 0 1-3-3l9.4-9.4z"/><path d="M19.7 11.3L21 10l-3-3-1.3 1.3"/></svg></div><div><b>Experienced technicians</b><p>Years of hands-on work on residential and commercial units, certified on today's diagnostic tools.</p></div></div>
+        <div class="why-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7L9 18l-5-5"/></svg></div><div><b>Quality parts, every time</b><p>We use high-quality parts and the latest techniques so the fix lasts, not just gets you through the week.</p></div></div>
+        <div class="why-item"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--cold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8z"/></svg></div><div><b>Minimal downtime</b><p>Our trucks are stocked for the common failures so most jobs are finished on the first visit.</p></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>How a service call works</h2>
+      <p class="lede">No forms to print, no waiting on hold. Three steps from "it's broken" to "it's cold again."</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="n">1</div><b>Call or book online</b><p>Tell us what's wrong and where you are. A customer service rep schedules the soonest available technician, often the same day.</p></div>
+      <div class="step"><div class="n">2</div><b>We diagnose on site</b><p>The technician inspects the system, explains the problem in plain language, and gives you the price before any work starts.</p></div>
+      <div class="step"><div class="n">3</div><b>Repaired and tested</b><p>We make the repair, run the system, and confirm it's holding temperature before we leave.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>What customers say</h2>
+      <p class="lede">Reviews from homeowners and business owners across Miami-Dade, Broward and Orange County.</p>
+    </div>
+    <div class="quotes">
+      <figure class="quote" style="margin:0"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg></div><p>"Excellent customer service and affordable pricing. They fixed my cooling issue promptly."</p><small>Homeowner, Miramar</small></figure>
+      <figure class="quote" style="margin:0"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg></div><p>"Quick and efficient service! My AC was fixed in no time. Highly recommend."</p><small>Homeowner, Pembroke Pines</small></figure>
+      <figure class="quote" style="margin:0"><div class="stars" aria-label="5 out of 5 stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 7 7 .6-5.3 4.6L18.3 21 12 17.3 5.7 21l1.6-6.8L2 9.6 9 9z"/></svg></div><p>"Professional team, reliable repairs. My refrigeration system is working perfectly now."</p><small>Restaurant owner, Orlando</small></figure>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div>
+      <h2>Two offices, one phone number</h2>
+      <div class="contact-lines">
+        <div>Call <a href="tel:8779155222">877-915-5222</a></div>
+        <div>Email <a href="mailto:acandrefrigerationllc@gmail.com">acandrefrigerationllc@gmail.com</a></div>
+      </div>
+      <div class="loc-list">
+        <div class="loc">
+          <b>Miramar</b>
+          <span>3600 South State Road 7, Suite 239<br>Miramar, FL 33023</span>
+          <span class="hours">Open 24 hours</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=3600+South+State+Road+7+Suite+239+Miramar+FL+33023" target="_blank" rel="noopener">Open in Google Maps</a>
+        </div>
+        <div class="loc">
+          <b>Orlando</b>
+          <span>7380 W Sand Lake Rd, Suite 500<br>Orlando, FL 32819</span>
+          <span class="hours">Open 24 hours</span>
+          <a href="https://www.google.com/maps/search/?api=1&query=7380+W+Sand+Lake+Rd+Suite+500+Orlando+FL+32819" target="_blank" rel="noopener">Open in Google Maps</a>
+        </div>
+      </div>
+    </div>
+    <form class="form" id="serviceForm" novalidate>
+      <h3>Request a service call</h3>
+      <p class="fine">Fill this out and we'll call you back to confirm a time. For an emergency right now, call instead.</p>
+      <div class="row">
+        <label>Name<input id="f-name" name="name" type="text" autocomplete="name" required></label>
+        <label>Phone<input id="f-phone" name="phone" type="tel" autocomplete="tel" required></label>
+      </div>
+      <label>Email<input id="f-email" name="email" type="email" autocomplete="email"></label>
+      <div class="row">
+        <label>What needs service?
+          <select id="f-type" name="type">
+            <option>Air conditioning</option>
+            <option>Commercial refrigeration</option>
+            <option>New installation</option>
+            <option>Maintenance</option>
+          </select>
+        </label>
+        <label>Location
+          <select id="f-loc" name="location">
+            <option>Miramar / South Florida</option>
+            <option>Orlando</option>
+            <option>Other</option>
+          </select>
+        </label>
+      </div>
+      <label>What's happening?<textarea id="f-msg" name="message" placeholder="Example: Walk-in cooler reading 48°F since this morning, compressor runs but no cold air."></textarea></label>
+      <button class="btn btn-heat" type="submit">Send request</button>
+      <div class="done" id="formDone" role="status">Request received. We'll call you back shortly to confirm a time. In the live site this will email the office.</div>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>&copy; 2026 Air Conditioning and Refrigeration Repairs LLC. Licensed and insured in Florida.</div>
+    <nav aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</footer>
+
+<a class="callbar" href="tel:8779155222"><span>Call 877-915-5222<small>Open 24 hours, 7 days a week</small></span><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L8 9.7a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.8.3 1.7.5 2.6.7a2 2 0 0 1 1.7 2z"/></svg></a>
+
+<script>
+(function(){
+  var form=document.getElementById('serviceForm');
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('f-name'),phone=document.getElementById('f-phone');
+    var ok=true;
+    [name,phone].forEach(function(el){
+      if(!el.value.trim()){el.style.borderColor='var(--heat)';el.setAttribute('aria-invalid','true');ok=false;}
+      else{el.style.borderColor='';el.removeAttribute('aria-invalid');}
+    });
+    if(!ok){(name.value.trim()?phone:name).focus();return;}
+    form.classList.add('sent');
+    document.getElementById('formDone').scrollIntoView({block:'nearest',behavior:'smooth'});
+  });
+})();
+</script>
